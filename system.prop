@@ -35,3 +35,6 @@ persist.radio.add_power_save=1
 
 # System proverty snapshot disable
 persist.radio.snapshot_disabled=1
+
+# USB
+ro.vold.umsdirtyratio=50
