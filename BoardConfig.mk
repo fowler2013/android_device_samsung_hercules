@@ -23,7 +23,7 @@ TARGET_BOARD_INFO_FILE ?= device/samsung/hercules/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := SGH-T989,hercules
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_hercules_defconfig
+TARGET_KERNEL_CONFIG := Sultan_hercules_defconfig
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
