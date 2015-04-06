@@ -1,0 +1,47 @@
+From 787bc2378dcef0bdfc45ced6792ca2fd62d0fd4b Mon Sep 17 00:00:00 2001
+From: codeworkx <codeworkx@cyanogenmod.org>
+Date: Sat, 16 Mar 2013 00:35:47 +0000
+Subject: [PATCH] ServiceState: add support for DCHSPAP
+
+Change-Id: Ib0a328652c14580718400b00146b770481be5458
+---
+ telephony/java/android/telephony/ServiceState.java | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/telephony/java/android/telephony/ServiceState.java b/telephony/java/android/telephony/ServiceState.java
+index f653af3..beaa451 100644
+--- a/telephony/java/android/telephony/ServiceState.java
++++ b/telephony/java/android/telephony/ServiceState.java
+@@ -141,6 +141,8 @@
+     public static final int RIL_RADIO_TECHNOLOGY_LTE = 14;
+     /** @hide */
+     public static final int RIL_RADIO_TECHNOLOGY_HSPAP = 15;
++    /** @hide */
++    public static final int RIL_RADIO_TECHNOLOGY_DCHSPAP = 30;
+     /**
+      * GSM radio technology only supports voice. It does not support data.
+      * @hide
+@@ -534,6 +536,7 @@ public static String rilRadioTechnologyToString(int rt) {
+                 rtString = "LTE";
+                 break;
+             case RIL_RADIO_TECHNOLOGY_HSPAP:
++            case RIL_RADIO_TECHNOLOGY_DCHSPAP:
+                 rtString = "HSPAP";
+                 break;
+             case RIL_RADIO_TECHNOLOGY_GSM:
+@@ -808,6 +811,7 @@ private int rilRadioTechnologyToNetworkType(int rt) {
+         case ServiceState.RIL_RADIO_TECHNOLOGY_LTE:
+             return TelephonyManager.NETWORK_TYPE_LTE;
+         case ServiceState.RIL_RADIO_TECHNOLOGY_HSPAP:
++        case ServiceState.RIL_RADIO_TECHNOLOGY_DCHSPAP:
+             return TelephonyManager.NETWORK_TYPE_HSPAP;
+         case ServiceState.RIL_RADIO_TECHNOLOGY_GSM:
+             return TelephonyManager.NETWORK_TYPE_GSM;
+@@ -864,6 +868,7 @@ public static boolean isGsm(int radioTechnology) {
+                 || radioTechnology == RIL_RADIO_TECHNOLOGY_HSPA
+                 || radioTechnology == RIL_RADIO_TECHNOLOGY_LTE
+                 || radioTechnology == RIL_RADIO_TECHNOLOGY_HSPAP
++                || radioTechnology == RIL_RADIO_TECHNOLOGY_DCHSPAP
+                 || radioTechnology == RIL_RADIO_TECHNOLOGY_GSM
+                 || radioTechnology == RIL_RADIO_TECHNOLOGY_TD_SCDMA
+                 || radioTechnology == RIL_RADIO_TECHNOLOGY_IWLAN;

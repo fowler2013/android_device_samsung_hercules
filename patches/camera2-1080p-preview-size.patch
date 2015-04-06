@@ -1,0 +1,18 @@
+diff --git a/src/com/android/camera/VideoModule.java b/src/com/android/camera/VideoModule.java
+index 249b49b..858df8c 100644
+--- a/src/com/android/camera/VideoModule.java
++++ b/src/com/android/camera/VideoModule.java
+@@ -815,7 +815,12 @@ public class VideoModule extends CameraModule
+         }
+         Size optimalSize = CameraUtil.getOptimalPreviewSize(context, sizes,
+                 (double) profile.videoFrameWidth / profile.videoFrameHeight);
+-        return new Point(optimalSize.width(), optimalSize.height());
++	// set preview size to 800x480 when 1080P video is requested
++	if ((profile.videoFrameWidth == 1920) && (profile.videoFrameHeight == 1080)) {
++        	return new Point(800, 480);
++	} else {
++        	return new Point(optimalSize.width(), optimalSize.height());
++	}
+     }
+ 
+     private void resizeForPreviewAspectRatio() {
