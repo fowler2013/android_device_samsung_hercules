@@ -76,11 +76,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define VC1_STRUCT_B_POS            24
 #define VC1_SEQ_LAYER_SIZE          36
 
-#ifndef MAX_RES_720P
 #define IS_NOT_ALIGNED( num, to) (num & (to-1))
 #define ALIGN( num, to ) (((num) + (to-1)) & (~(to-1)))
 #define SZ_2K (2048)
-#endif
 
 typedef struct OMXComponentCapabilityFlagsType
 {
@@ -3578,7 +3576,6 @@ OMX_ERRORTYPE  omx_video::empty_this_buffer_proxy(OMX_IN OMX_HANDLETYPE         
     memcpy (pmem_data_buf, (buffer->pBuffer + buffer->nOffset),
             buffer->nFilledLen);
     DEBUG_PRINT_LOW("memcpy() done in ETBProxy for i/p Heap UseBuf");
-#ifndef MAX_RES_720P
   } else if (m_sInPortDef.format.video.eColorFormat ==
       OMX_COLOR_FormatYUV420SemiPlanar) {
       //For the case where YUV420SP buffers are qeueued to component
@@ -3601,7 +3598,6 @@ OMX_ERRORTYPE  omx_video::empty_this_buffer_proxy(OMX_IN OMX_HANDLETYPE         
                     chromaOffset+chromaSize);
           }
       }
-#endif
   }
 #ifdef _COPPER_
   if(dev_empty_buf(buffer, pmem_data_buf,nBufIndex,m_pInput_pmem[nBufIndex].fd) != true)
@@ -4200,7 +4196,7 @@ OMX_ERRORTYPE omx_video::empty_buffer_done(OMX_HANDLETYPE         hComp,
 
   pending_input_buffers--;
 
-  if(mUseProxyColorFormat && (buffer_index < m_sInPortDef.nBufferCountActual)) {
+  if(mUseProxyColorFormat && ((OMX_U32)buffer_index < m_sInPortDef.nBufferCountActual)) {
     if(!pdest_frame && !input_flush_progress) {
       pdest_frame = buffer;
       DEBUG_PRINT_LOW("\n empty_buffer_done pdest_frame address is %p",pdest_frame);
@@ -4210,6 +4206,7 @@ OMX_ERRORTYPE omx_video::empty_buffer_done(OMX_HANDLETYPE         hComp,
       DEBUG_PRINT_LOW("\n empty_buffer_done insert address is %p",buffer);
       if (!m_opq_pmem_q.insert_entry((unsigned int)buffer, 0, 0)) {
         DEBUG_PRINT_ERROR("\n empty_buffer_done: pmem queue is full");
+        m_pCallbacks.EmptyBufferDone(hComp, m_app_data, buffer);
         return OMX_ErrorBadParameter;
       }
     }
@@ -4444,7 +4441,7 @@ OMX_ERRORTYPE omx_video::get_supported_profile_level(OMX_VIDEO_PARAM_PROFILELEVE
                     profileLevelType->eProfile,profileLevelType->eLevel);
   return eRet;
 }
-#endif
+
 #ifdef USE_ION
 int omx_video::alloc_map_ion_memory(int size,struct ion_allocation_data *alloc_data,
                                     struct ion_fd_data *fd_data,int flag)
@@ -4478,12 +4475,8 @@ int omx_video::alloc_map_ion_memory(int size,struct ion_allocation_data *alloc_d
         if (secure_session)
            alloc_data->heap_mask = (ION_HEAP(MEM_HEAP_ID) | ION_SECURE);
         else
-#ifdef MAX_RES_720P
-           alloc_data->heap_mask = ION_HEAP(MEM_HEAP_ID);
-#else
            alloc_data->heap_mask = (ION_HEAP(MEM_HEAP_ID) |
                 ION_HEAP(ION_IOMMU_HEAP_ID));
-#endif
 
         pthread_mutex_lock(&m_venc_ionlock);
         rc = ioctl(ion_device_fd,ION_IOC_ALLOC,alloc_data);
@@ -4541,6 +4534,7 @@ void omx_video::free_ion_memory(struct venc_ion *buf_ion_info)
      buf_ion_info->fd_ion_data.fd = -1;
      pthread_mutex_unlock(&m_venc_ionlock);
 }
+#endif
 #endif
 #ifdef _ANDROID_ICS_
 void omx_video::omx_release_meta_buffer(OMX_BUFFERHEADERTYPE *buffer)
@@ -4762,13 +4756,10 @@ OMX_ERRORTYPE  omx_video::empty_this_buffer_opaque(OMX_IN OMX_HANDLETYPE hComp,
     ret = push_input_buffer(hComp);
   } else {
     if (!m_opq_meta_q.insert_entry((unsigned)buffer,0,0)) {
+      m_pCallbacks.EmptyBufferDone(hComp, m_app_data, buffer);
       DEBUG_PRINT_ERROR("\nERROR: ETBProxy: Queue is full");
       ret = OMX_ErrorBadParameter;
     }
-  }
-  if(ret != OMX_ErrorNone) {
-    m_pCallbacks.EmptyBufferDone(hComp,m_app_data,buffer);
-    DEBUG_PRINT_LOW("\nERROR: ETBOpaque failed:");
   }
   return ret;
 }
@@ -4801,6 +4792,9 @@ OMX_ERRORTYPE omx_video::queue_meta_buffer(OMX_HANDLETYPE hComp,
       m_opq_meta_q.pop_entry(&address,&p2,&id);
       psource_frame = (OMX_BUFFERHEADERTYPE* ) address;
     }
+  } else {
+    // there has been an error and source frame has been scheduled for an EBD
+    psource_frame = NULL;
   }
   return ret;
 }
@@ -4888,6 +4882,9 @@ OMX_ERRORTYPE omx_video::convert_queue_buffer(OMX_HANDLETYPE hComp,
         pdest_frame = (OMX_BUFFERHEADERTYPE* ) address;
         DEBUG_PRINT_LOW("\n pdest_frame pop address is %p",pdest_frame);
       }
+    } else {
+      // there has been an error and source frame has been scheduled for an EBD
+      psource_frame = NULL;
     }
     return ret;
 }
