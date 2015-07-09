@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter skyrocket, $(TARGET_DEVICE)),)
+ifneq ($(filter hercules, $(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 

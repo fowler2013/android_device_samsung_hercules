@@ -15,5 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_skyrocket.mk
+    $(LOCAL_DIR)/full_hercules.mk
 

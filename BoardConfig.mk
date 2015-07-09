@@ -14,7 +14,7 @@
 
 BOARD_VENDOR := samsung
 
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/skyrocket/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/hercules/include
 
 # Architecture
 BOARD_USES_LEGACY_MMAP := true
@@ -37,7 +37,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7/bin
 TARGET_KERNEL_SOURCE := kernel/samsung/sultan-celox
-TARGET_KERNEL_CONFIG := Sultan_skyrocket_defconfig
+TARGET_KERNEL_CONFIG := Sultan_hercules_defconfig
 
 # Audio
 BOARD_HAVE_SAMSUNG_AUDIO := true
@@ -52,8 +52,8 @@ CLANG_TARGET_GLOBAL_CPPFLAGS := $(filter-out -DQCOM_DIRECTTRACK,$(CLANG_TARGET_G
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/skyrocket/bluetooth/vnd_msm8660.txt
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/skyrocket/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/hercules/bluetooth/vnd_msm8660.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/hercules/bluetooth
 
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
@@ -82,7 +82,7 @@ endif
 DONT_DEXPREOPT_PREBUILTS := true
 
 # Display
-BOARD_EGL_CFG := device/samsung/skyrocket/configs/egl.cfg
+BOARD_EGL_CFG := device/samsung/hercules/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
@@ -110,7 +110,7 @@ TARGET_USES_LOGD := false
 TARGET_NO_ADAPTIVE_PLAYBACK := true
 
 # Package assert
-TARGET_OTA_ASSERT_DEVICE := SGH-I727,skyrocket
+TARGET_OTA_ASSERT_DEVICE := SGH-T989,hercules
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -126,11 +126,11 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Recovery
-# TARGET_RECOVERY_FSTAB := device/samsung/skyrocket/ramdisk/twrp.fstab
-TARGET_RECOVERY_FSTAB := device/samsung/skyrocket/ramdisk/fstab.qcom
+# TARGET_RECOVERY_FSTAB := device/samsung/hercules/ramdisk/twrp.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/hercules/ramdisk/fstab.qcom
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/samsung/skyrocket/ril
+BOARD_RIL_CLASS := ../../../device/samsung/hercules/ril
 
 # TWRP
 DEVICE_RESOLUTION := 480x800

@@ -1,1 +1,1 @@
-add_lunch_combo cm_skyrocket-userdebug
+add_lunch_combo cm_hercules-userdebug

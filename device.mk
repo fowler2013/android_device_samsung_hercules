@@ -15,7 +15,7 @@
 #
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += device/samsung/skyrocket/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/hercules/overlay
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -27,7 +27,7 @@ PRODUCT_PACKAGES += \
     libaudioutils
 
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/configs/audio_policy.conf:system/etc/audio_policy.conf
+    device/samsung/hercules/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.mode=endfire \
@@ -35,7 +35,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/firmware/bcm4330B1.hcd:system/etc/firmware/bcm4330B1.hcd
+    device/samsung/hercules/firmware/bcm4330B1.hcd:system/etc/firmware/bcm4330B1.hcd
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -67,7 +67,7 @@ PRODUCT_PACKAGES += \
     gps.msm8660
 
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/gps/gps.conf:system/etc/gps.conf
+    device/samsung/hercules/gps/gps.conf:system/etc/gps.conf
 
 # Hardware permissions
 PRODUCT_COPY_FILES += \
@@ -100,16 +100,16 @@ PRODUCT_PACKAGES += \
 
 # Key layouts
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl\
-    device/samsung/skyrocket/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
-    device/samsung/skyrocket/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
-    device/samsung/skyrocket/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
-    device/samsung/skyrocket/keylayout/Vendor_04e8_Product_7021.kl:system/usr/keylayout/Vendor_04e8_Product_7021.kl
+    device/samsung/hercules/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl\
+    device/samsung/hercules/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
+    device/samsung/hercules/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
+    device/samsung/hercules/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+    device/samsung/hercules/keylayout/Vendor_04e8_Product_7021.kl:system/usr/keylayout/Vendor_04e8_Product_7021.kl
 
 # Media
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/samsung/skyrocket/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    device/samsung/hercules/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/samsung/hercules/configs/media_profiles.xml:system/etc/media_profiles.xml \
     frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -117,9 +117,9 @@ PRODUCT_COPY_FILES += \
 
 # Modem/EFS scripts
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/configs/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
-    device/samsung/skyrocket/configs/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-    device/samsung/skyrocket/configs/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh
+    device/samsung/hercules/configs/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
+    device/samsung/hercules/configs/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+    device/samsung/hercules/configs/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -169,11 +169,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/ramdisk/fstab.qcom:root/fstab.qcom \
-    device/samsung/skyrocket/ramdisk/init.qcom.rc:root/init.qcom.rc \
-    device/samsung/skyrocket/ramdisk/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh \
-    device/samsung/skyrocket/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/samsung/skyrocket/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
+    device/samsung/hercules/ramdisk/fstab.qcom:root/fstab.qcom \
+    device/samsung/hercules/ramdisk/init.qcom.rc:root/init.qcom.rc \
+    device/samsung/hercules/ramdisk/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh \
+    device/samsung/hercules/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    device/samsung/hercules/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
 
 # System properties (misc.)
 # persist.sys.lazy.dexopt=true (fw/base)
@@ -210,16 +210,16 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
-    device/samsung/skyrocket/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    device/samsung/skyrocket/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    device/samsung/hercules/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/samsung/hercules/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
 # Qcom HALs
-$(call project-set-path,qcom-audio,device/samsung/skyrocket/audio)
-$(call project-set-path,qcom-display,device/samsung/skyrocket/display)
-$(call project-set-path,qcom-media,device/samsung/skyrocket/media)
+$(call project-set-path,qcom-audio,device/samsung/hercules/audio)
+$(call project-set-path,qcom-display,device/samsung/hercules/display)
+$(call project-set-path,qcom-media,device/samsung/hercules/media)
 
 # Dalvik-cache config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)

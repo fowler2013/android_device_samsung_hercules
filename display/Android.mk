@@ -1,4 +1,4 @@
-ifeq ($(TARGET_DEVICE),skyrocket)
+ifeq ($(TARGET_DEVICE),hercules)
 
 display-hals := libgralloc libgenlock libcopybit libvirtual
 display-hals += libhwcomposer liboverlay libqdutils libexternal libqservice

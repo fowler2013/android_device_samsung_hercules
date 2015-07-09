@@ -25,14 +25,14 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_skyrocket
-PRODUCT_DEVICE := skyrocket
+PRODUCT_NAME := full_hercules
+PRODUCT_DEVICE := hercules
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := SAMSUNG-SGH-I727
+PRODUCT_MODEL := SAMSUNG-SGH-T989
 
 # Inherit makefile
-$(call inherit-product, device/samsung/skyrocket/device.mk)
+$(call inherit-product, device/samsung/hercules/device.mk)
 
 # Vendor blobs
-$(call inherit-product-if-exists, vendor/samsung/skyrocket/skyrocket-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/hercules/hercules-vendor.mk)

@@ -1,4 +1,4 @@
-ifeq ($(TARGET_DEVICE),skyrocket)
+ifeq ($(TARGET_DEVICE),hercules)
 
 MY_LOCAL_PATH := $(call my-dir)
 

@@ -1,4 +1,4 @@
-ifeq ($(TARGET_DEVICE),skyrocket)
+ifeq ($(TARGET_DEVICE),hercules)
 
 QCOM_MEDIA_ROOT := $(call my-dir)
 
